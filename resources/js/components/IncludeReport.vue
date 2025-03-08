@@ -53,9 +53,10 @@ export default {
         fetchDataShow() {
             // ดึงข้อมูลจาก localStorage
             const data = localStorage.getItem("form");
+            //console.log(data)
             if (data) {
                 this.forms = JSON.parse(data);
-
+               // console.log(this.forms)
                 axios.post('/checksheet_report/send/show', {
                     forms: this.forms, // ส่ง params ตรง ๆ 
                     header: {
@@ -65,7 +66,7 @@ export default {
                 }).then((res) => {
                     //console.log(res.data);
                     this.datashow = res.data;
-                    console.log(this.datashow);
+                    //console.log(this.datashow);
                 }).catch((error) => {
                     console.error("Error fetching data:", error);
                 });

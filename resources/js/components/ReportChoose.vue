@@ -46,7 +46,7 @@
                     <template #header>
                         <div class="pb-4 text-end">
                             <Button @click="exportExcel()"
-                                class="text-xl font-semibold text-white btn btn-success">Export Excel</Button>
+                                class="text-xl font-semibold text-white btn btn-success"> <i class="pi pi-external-link"></i>Export Excel</Button>
                         </div>
                     </template>
                     <Column field="LNNO" header="ลำดับ">
@@ -56,7 +56,16 @@
                     <Column field="DESC3" header="มาตรฐาน" style="min-width: 500px;"></Column>
                     <Column field="TOOLS" header="เครื่องมือ" style="min-width: 200px;"></Column>
                     <Column field="ANSWER" header="คำตอบ" style="min-width: 200px;"></Column>
-                    <Column field="RESULT" header="ผลลัพธ์" style="min-width: 200px;"></Column>
+                    <Column header="ผลลัพธ์" style="min-width: 200px;" >
+                        <template #body="{ data }">
+                            <span class="text-lg font-semibold text-green-500">{{ data.RESULT }}</span>
+                        </template>
+                    </Column>
+                    <Column header="Status" style="min-width: 100px;">
+                        <template #body="{ data }">
+                            <span v-if="data.RESULT"><span class="icon-[material-symbols-light--check-circle] size-9 text-green-500"></span></span>
+                        </template>
+                    </Column>
                     <Column field="EMPNAME" header="ชื่อผู้ตรวจสอบ" style="min-width: 200px;"></Column>
                     <Column field="SHIFT" header="กะงาน" style="min-width: 200px;"></Column>
                     <Column field="LINE" header="ไลน์" style="min-width: 200px;"></Column>
@@ -77,7 +86,7 @@
 import axios from 'axios';
 import { useDateFormat } from '@vueuse/core';
 import * as XLSX from 'xlsx';
-
+import 'primeicons/primeicons.css';
 export default {
     data() {
         return {
@@ -119,8 +128,8 @@ export default {
                     this.hid = this.details[0].HID;
                     this.rev = this.details[0].REV;
                     this.rid = this.details[0].RID;
-                    console.log(this.results)
-                    console.log(this.details)
+                    //console.log(this.results)
+                    //console.log(this.details)
 
                 }).catch((err) => {
                     console.log(err)
@@ -132,11 +141,7 @@ export default {
             return useDateFormat(date, 'DD/MM/YYYY').value;
         },
         exportExcel() {
-           // Define the headers as an array (column names in the table)
-           const headers = [
-                "ลำดับ", "รายละเอียด", "วิธีการ", "มาตรฐาน", "เครื่องมือ", "คำตอบ", 
-                "ผลลัพธ์", "ชื่อผู้ตรวจสอบ", "กะงาน", "ไลน์", "หมายเลขเครื่องจักร", "วันที่ตรวจสอบ"
-            ];
+          
 
             // Define the mapping between JSON field names and table headers
             const fieldMapping = {

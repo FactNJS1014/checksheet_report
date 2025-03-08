@@ -125,7 +125,7 @@ export default {
                 { headers: { 'Content-Type': 'application/json' } } // Optional headers
             )
                 .then(res => {
-                    console.log("Response:", res.data);
+                    //console.log("Response:", res.data);
                     this.lines = res.data;
                 })
                 .catch(error => {
@@ -133,7 +133,7 @@ export default {
                 });
         },
         submitForm() {
-            console.log("Form submitted:", this.forms);
+            //console.log("Form submitted:", this.forms);
             localStorage.setItem("form", JSON.stringify(this.forms))
             this.$router.push('/choose');
         }   
