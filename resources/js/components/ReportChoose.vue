@@ -87,6 +87,9 @@ import axios from 'axios';
 import { useDateFormat } from '@vueuse/core';
 import * as XLSX from 'xlsx';
 import 'primeicons/primeicons.css';
+
+import Button from 'primevue/button';
+
 export default {
     data() {
         return {

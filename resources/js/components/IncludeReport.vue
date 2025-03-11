@@ -32,6 +32,9 @@
 import axios from 'axios';
 import { useDateFormat } from '@vueuse/core';
 import { body } from '@primeuix/themes/aura/card';
+
+import Button from 'primevue/button';
+
 export default {
 
     data() {
