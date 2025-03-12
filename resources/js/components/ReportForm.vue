@@ -125,7 +125,7 @@ export default {
                 { headers: { 'Content-Type': 'application/json' } } // Optional headers
             )
                 .then(res => {
-                    //console.log("Response:", res.data);
+                    console.log("Response:", res.data);
                     this.lines = res.data;
                 })
                 .catch(error => {
